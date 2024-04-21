@@ -1,95 +1,79 @@
-import Image from "next/image";
+'use client'
 import styles from "./page.module.css";
+import React from "react";
+import {Chart} from "react-google-charts";
+import { createContext } from 'react'
+
+const Context = createContext(undefined)
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+  const ganttChartData = [
+    [
+      { type: 'string', label: 'Task ID' },
+      { type: 'string', label: 'Task Name' },
+      { type: 'date', label: 'Start Date' },
+      { type: 'date', label: 'End Date' },
+      { type: 'number', label: 'Duration' },
+      { type: 'number', label: 'Percent Complete' },
+      { type: 'string', label: 'Dependencies' },
+    ],
+    [
+      'Research',
+      'Find sources',
+      new Date(2015, 0, 1),
+      new Date(2015, 0, 5),
+      null,
+      100,
+      null,
+    ],
+    [
+      'Write',
+      'Write paper',
+      null,
+      new Date(2015, 0, 9),
+      3 * 24 * 60 * 60 * 1000,
+      25,
+      'Research,Outline',
+    ],
+    [
+      'Cite',
+      'Create bibliography',
+      null,
+      new Date(2015, 0, 7),
+      1 * 24 * 60 * 60 * 1000,
+      20,
+      'Research',
+    ],
+    [
+      'Complete',
+      'Hand in paper',
+      null,
+      new Date(2015, 0, 10),
+      1 * 24 * 60 * 60 * 1000,
+      0,
+      'Cite,Write',
+    ],
+    [
+      'Outline',
+      'Outline paper',
+      null,
+      new Date(2015, 0, 6),
+      1 * 24 * 60 * 60 * 1000,
+      100,
+      'Research',
+    ],
+  ]
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+  return (
+      <div className="container mt-5">
+        <h2>React Gantt Chart Example</h2>
+        <Chart
+            width={'700px'}
+            height={'410px'}
+            chartType="Gantt"
+            loader={<div>Loading Chart</div>}
+            data={ganttChartData}
+            rootProps={{ 'data-testid': '1' }}
         />
       </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
-}
+  )}
