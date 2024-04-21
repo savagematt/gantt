@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    basePath: "/gantt",
+    // basePath: "/gantt",
     output: "export",  // <=== enables static exports
     reactStrictMode: true,
 };
