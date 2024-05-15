@@ -111,7 +111,7 @@ export default function Home() {
             <h2>Building works</h2>
             <Chart
                 width={'100%'}
-                height={'calc(100%-2rem)'}
+                style={{height: "100%"}}
                 chartType="Gantt"
                 loader={<div>Loading Chart</div>}
                 data={data}
