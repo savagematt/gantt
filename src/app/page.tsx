@@ -107,7 +107,7 @@ export default function Home() {
     }, []);
 
     return (
-        <div className="container mt-5 h-full">
+        <div className="container mt-5" style={{height: "100%"}}>
             <h2>Building works</h2>
             <Chart
                 width={'100%'}
